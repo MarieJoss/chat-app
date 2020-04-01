@@ -1,20 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './contact.css';
 
-const avatar = "https://i.ibb.co/QQHt3Sx/avatar-gratuit.png";
-const name = "MarieJoss";
-const online = true;
 
-const Contact =() => {
+const Contact = props => {
     return (<div className="Contact">
-        <img className="avatar" src={avatar} />
+        <img className="avatar" src={props.avatar} />
         <div className="name">
-            <h4>{name}</h4>
+            <h4>{props.name}</h4>
             <div className="status">
-                <div className="status-online"></div>
-                <div className="status-text">
-                    {online ? "Online" : 'Offline'}
-                </div>
+                <div className={props.online ? 'status-online' : 'status-offline'}></div>
+                <div className="status-text">{props.text}</div>
             </div>
         </div>
     </div>
@@ -23,4 +19,25 @@ const Contact =() => {
 
 
 
+    // return (<div className="Contact">
+    //     <img className="avatar" src={props.avatar} />
+    //     <div className="name">
+    //         <h4>{props.name}</h4>
+    //         <div className="status">
+    //             <div className="status-online"></div>
+    //             <div className="status-text">
+    //                 {online ? "Online" : 'Offline'}
+    //             </div>
+    //         </div>
+    //     </div>
+    // </div>
+    // )
+
+
+    ConstantSourceNode.propTypes = {
+        avatar: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        text:PropTypes.string.isRequired,
+        online:PropTypes.bool.isRequired
+      };
 export default Contact;
