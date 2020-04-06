@@ -1,25 +1,34 @@
 import React from 'react';
 import './contact.css';
 
-// const avatar = "https://i.ibb.co/QQHt3Sx/avatar-gratuit.png";
-// const name = "MarieJoss";
-// const online = true;
 
-const Contact = props => {
-    return (<div className="Contact">
-        <img className="avatar" src={props.avatar} alt={props.name} />
+class Contact extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        online: props.online,
+      };
+    }
+    render() {
+        return (<div className="Contact">
+        <img className="avatar" src={this.props.avatar} alt={this.props.name} />
         <div className="name">
-            <h4>{props.name}</h4>
-            <div className="status">
-                <div className={props.online ? 'status-online' : 'status-offline'}></div>
+            <h4>{this.props.name}</h4>
+            <div className="status"
+              onClick={event => {
+                const newOnline = !this.state.online;
+                this.setState({ online: newOnline });
+              }}>
+                <div className={this.state.online ? 'status-online' : 'status-offline'} ></div>
                 <div className="status-text">
-                    {props.online ? "Online" : 'Offline'}
+                    {this.state.online ? "Online" : 'Offline'}
                 </div>
             </div>
         </div>
     </div>
-    )
-    };
+    );
+    }
+  }
 
 
 
